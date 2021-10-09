@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CDI - Calculadora de Distribución de Ingresos</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>CDI</h1>
+      <p>Calculadora de Distribución de Ingresos</p>
+    </header>
+    <div id="calc">
+      <div id="calc-header">
+        <div class="amount">
+          <input type="number" id="a_input" placeholder="Ingreso mensual" />
+          <button onclick="calculate()">Calcular</button>
+        </div>
+        <div id="total">
+          <h2>Total de Ingresos: &nbsp;</h2>
+          <h2 class="dollar-sign">$</h2>
+          <h2 id="res">0.00</h2>
+        </div>
+      </div>
+      <div class="results">
+        <div class="result-card" id="result_n">
+          <h2 class="perse" id="result_n_p">%0</h2>
+          <h2>Necesidades</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_n">0</h4>
+          </div>
+        </div>
+        <div class="result-card" id="result_g">
+          <h2 class="perse" id="result_g_p">%0</h2>
+          <h2>Gustos</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_g">0</h4>
+          </div>
+        </div>
+        <div class="result-card" id="result_i">
+          <h2 class="perse" id="result_i_p">%0</h2>
+          <h2>Inversión</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_i">0</h4>
+          </div>
+        </div>
+        <div class="result-card" id="result_a">
+          <div class="header">
+            <h2 class="perse" id="result_a_p">%0</h2>
+            <h2>Ahorros</h2>
+            <div class="result-amount">
+              <h4 class="dollar-sign">$</h4>
+              <h4 class="real-amount" id="a_a">0</h4>
+            </div>
+          </div>
+          <div id="result_a_results">
+            <div class="result-card" id="result_s">
+              <h2 class="perse" id="result_s_p">%20.0</h2>
+              <h2>Seguridad</h2>
+              <div class="result-amount">
+                <h4 class="dollar-sign">$</h4>
+                <h4 class="real-amount" id="a_s">0</h4>
+              </div>
+            </div>
+            <div class="result-card" id="result_c">
+              <h2 class="perse" id="result_c_p">%30.0</h2>
+              <h2>Crecimiento</h2>
+              <div class="result-amount">
+                <h4 class="dollar-sign">$</h4>
+                <h4 class="real-amount" id="a_c">0</h4>
+              </div>
+            </div>
+            <div class="result-card" id="result_o">
+              <h2 class="perse" id="result_o_p">%50.0</h2>
+              <h2>Objetivos</h2>
+              <div class="result-amount">
+                <h4 class="dollar-sign">$</h4>
+                <h4 class="real-amount" id="a_o">0</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
