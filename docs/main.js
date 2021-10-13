@@ -1,7 +1,11 @@
 const input = document.getElementById("a_input");
 
 // Amounts
+const isrResult = document.getElementById("a_isr");
+const afpResult = document.getElementById("a_afp");
+const arsResult = document.getElementById("a_ars");
 const nResult = document.getElementById("a_n");
+const dResult = document.getElementById("a_d");
 const gResult = document.getElementById("a_g");
 const iResult = document.getElementById("a_i");
 const aResult = document.getElementById("a_a");
@@ -11,47 +15,117 @@ const oResult = document.getElementById("a_o");
 
 // Percents
 const nPercent = document.getElementById("result_n_p");
+const dPercent = document.getElementById("result_d_p");
 const gPercent = document.getElementById("result_g_p");
 const iPercent = document.getElementById("result_i_p");
 const aPercent = document.getElementById("result_a_p");
 
 // Incomings
-const res = document.getElementById("res");
+const resB = document.getElementById("res_b");
+const resN = document.getElementById("res_n");
 
-const format = (money) => (money + "").replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+const format = (money, decimals = 2) =>
+  money.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+const getPercent = (input, value) => "%" + format((value / input) * 100, 1);
+
+function calculateARS(value) {
+  if (value <= 13482) return 0;
+  const ARS = value * 0.0304;
+  return ARS < 4098.53 ? ARS : 4098.53;
+}
+
+function calculateAFP(value) {
+  if (value <= 13482) return 0;
+  const AFP = value * 0.0287;
+  return AFP < 7738.67 ? AFP : 7738.67;
+}
+
+function calculateISR(grossSalary, ars, afp) {
+  const netSalary = grossSalary - (ars + afp);
+
+  const optionA = netSalary > 34685.0 && netSalary <= 52027.42;
+  const optionB = netSalary > 52027.42 && netSalary <= 72260.25;
+  const optionC = netSalary > 72260.25;
+
+  const results = [
+    (netSalary - 34685.0) * 0.15,
+    (netSalary - 52027.42) * 0.2 + 2601.33,
+    (netSalary - 72260.25) * 0.25 + 6648.0,
+  ];
+
+  return optionA ? results[0] : optionB ? results[1] : optionC ? results[2] : 0;
+}
+
+function calculatePercent(input = 0, ...percents) {
+  const sizeA = input >= 5000 && input < 10000;
+  const sizeB = input >= 10000 && input < 25000;
+  const sizeC = input >= 25000 && input < 50000;
+  const sizeD = input >= 50000 && input < 100000;
+  const sizeE = input >= 100000 && input < 150000;
+  const sizeF = input >= 150000 && input < 250000;
+  const sizeG = input >= 250000 && input < 500000;
+  const sizeH = input >= 500000;
+
+  return (
+    input *
+    (sizeA
+      ? percents[0]
+      : sizeB
+      ? percents[1]
+      : sizeC
+      ? percents[2]
+      : sizeD
+      ? percents[3]
+      : sizeE
+      ? percents[4]
+      : sizeF
+      ? percents[5]
+      : sizeG
+      ? percents[6]
+      : sizeH
+      ? percents[7]
+      : 0)
+  );
+}
 
 function calculate() {
-  const v = +input.value;
-  res.innerHTML = format(v.toFixed(2));
+  const inputValue = +input.value;
 
-  const sizeA = v > 5000 && v < 10001;
-  const sizeB = v > 10000 && v < 50001;
-  const sizeC = v > 50000 && v < 100001;
-  const sizeD = v > 100000;
+  const ars = calculateARS(inputValue);
+  const afp = calculateAFP(inputValue);
+  const isr = calculateISR(inputValue, ars, afp);
 
-  const calcPercent = (sa, sb, sc, sd) =>
-    (v * (sizeD ? sd : sizeC ? sc : sizeB ? sb : sizeA ? sa : 0)).toFixed(2);
+  const withTaxes = inputValue - (ars + afp + isr);
 
-  const needs = calcPercent(0.651, 0.482, 0.415, 0.371);
-  const pleasures = calcPercent(0.092, 0.136, 0.185, 0.143);
-  const investments = calcPercent(0.085, 0.131, 0.145, 0.201);
-  const savings = calcPercent(0.172, 0.251, 0.255, 0.285);
+  resB.innerHTML = format(inputValue);
+  resN.innerHTML = format(withTaxes);
+
+  isrResult.innerHTML = format(isr);
+  afpResult.innerHTML = format(afp);
+  arsResult.innerHTML = format(ars);
+
+  const needs = calculatePercent(withTaxes, 0.4, 0.45, 0.45);
+  const pleasures = calculatePercent(withTaxes, 0.2, 0.18, 0.158);
+  const donations = calculatePercent(withTaxes, 0.05, 0.02, 0.03);
+  const investments = calculatePercent(withTaxes, 0.13, 0.15, 0.142);
+  const savings = calculatePercent(withTaxes, 0.22, 0.22, 0.24);
 
   nResult.innerHTML = format(needs);
+  dResult.innerHTML = format(donations);
   gResult.innerHTML = format(pleasures);
   iResult.innerHTML = format(investments);
   aResult.innerHTML = format(savings);
 
-  sResult.innerHTML = format((savings * 0.2).toFixed(2));
-  cResult.innerHTML = format((savings * 0.3).toFixed(2));
-  oResult.innerHTML = format((savings * 0.5).toFixed(2));
+  sResult.innerHTML = format(savings * 0.25);
+  cResult.innerHTML = format(savings * 0.3);
+  oResult.innerHTML = format(savings * 0.45);
 
-  const getPercent = (value) => "%" + format(((value / v) * 100).toFixed(1));
-
-  nPercent.innerHTML = getPercent(needs);
-  gPercent.innerHTML = getPercent(pleasures);
-  iPercent.innerHTML = getPercent(investments);
-  aPercent.innerHTML = getPercent(savings);
+  nPercent.innerHTML = getPercent(withTaxes, needs);
+  dPercent.innerHTML = getPercent(withTaxes, donations);
+  gPercent.innerHTML = getPercent(withTaxes, pleasures);
+  iPercent.innerHTML = getPercent(withTaxes, investments);
+  aPercent.innerHTML = getPercent(withTaxes, savings);
 }
 
 input.addEventListener("keyup", function (event) {

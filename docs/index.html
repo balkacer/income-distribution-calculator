@@ -15,72 +15,156 @@
     <div id="calc">
       <div id="calc-header">
         <div class="amount">
-          <input type="number" id="a_input" placeholder="Ingreso mensual" />
+          <input
+            type="number"
+            id="a_input"
+            placeholder="Ingreso de $5,000 a $500,000 o más"
+          />
           <button onclick="calculate()">Calcular</button>
         </div>
         <div id="total">
-          <h2>Total de Ingresos: &nbsp;</h2>
-          <h2 class="dollar-sign">$</h2>
-          <h2 id="res">0.00</h2>
+          <div class="bordered_box">
+            <h2>Bruto: &nbsp;</h2>
+            <h2 class="dollar-sign">$</h2>
+            <h2 id="res_b">0.00</h2>
+          </div>
+          <div class="bordered_box">
+            <h2>Neto: &nbsp;</h2>
+            <h2 class="dollar-sign">$</h2>
+            <h2 id="res_n">0.00</h2>
+          </div>
         </div>
       </div>
       <div class="results">
-        <div class="result-card" id="result_n">
-          <h2 class="perse" id="result_n_p">%0</h2>
+        <div
+          class="result-card"
+          id="result_isr"
+          title="Impuesto Sobre la Renta"
+        >
+          <h2>ISR</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_isr">0.00</h4>
+          </div>
+        </div>
+        <div
+          class="result-card"
+          id="result_afp"
+          title="Administradora de Fondo de Pensiones"
+        >
+          <h2>AFP</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_afp">0.00</h4>
+          </div>
+        </div>
+        <div
+          class="result-card"
+          id="result_ars"
+          title="Administradoras de Riesgos de Salud"
+        >
+          <h2>ARS</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_ars">0.00</h4>
+          </div>
+        </div>
+        <div
+          class="result-card"
+          id="result_n"
+          title="Este monto debe cubrir tus gastos fijos mensuales como son: la luz, la comida, etc."
+        >
+          <h2 class="perse" id="result_n_p">%0.0</h2>
           <h2>Necesidades</h2>
           <div class="result-amount">
             <h4 class="dollar-sign">$</h4>
-            <h4 class="real-amount" id="a_n">0</h4>
+            <h4 class="real-amount" id="a_n">0.00</h4>
           </div>
         </div>
-        <div class="result-card" id="result_g">
-          <h2 class="perse" id="result_g_p">%0</h2>
+        <div
+          class="result-card"
+          id="result_d"
+          title="Este dinero lo usarás para ayudar a otros, no importa si ganas mucho o poco siempre puedes ayudar a alguien."
+        >
+          <h2 class="perse" id="result_d_p">%0.0</h2>
+          <h2>Donaciones</h2>
+          <div class="result-amount">
+            <h4 class="dollar-sign">$</h4>
+            <h4 class="real-amount" id="a_d">0.00</h4>
+          </div>
+        </div>
+        <div
+          class="result-card"
+          id="result_g"
+          title="Esta es tu paga por generar ingresos, puedes usar este dinero para comprarte cosas ya mismo o salir con tus amigos."
+        >
+          <h2 class="perse" id="result_g_p">%0.0</h2>
           <h2>Gustos</h2>
           <div class="result-amount">
             <h4 class="dollar-sign">$</h4>
-            <h4 class="real-amount" id="a_g">0</h4>
+            <h4 class="real-amount" id="a_g">0.00</h4>
           </div>
         </div>
-        <div class="result-card" id="result_i">
-          <h2 class="perse" id="result_i_p">%0</h2>
+        <div
+          class="result-card"
+          id="result_i"
+          title="Este dinero lo podrás usar para invertir, toma en cuenta que este dinero no lo podrás usar para gastar."
+        >
+          <h2 class="perse" id="result_i_p">%0.0</h2>
           <h2>Inversión</h2>
           <div class="result-amount">
             <h4 class="dollar-sign">$</h4>
-            <h4 class="real-amount" id="a_i">0</h4>
+            <h4 class="real-amount" id="a_i">0.00</h4>
           </div>
         </div>
-        <div class="result-card" id="result_a">
+        <div
+          class="result-card"
+          id="result_a"
+          title="Necesitas ahorrar para el futuro"
+        >
           <div class="header">
-            <h2 class="perse" id="result_a_p">%0</h2>
+            <h2 class="perse" id="result_a_p">%0.0</h2>
             <h2>Ahorros</h2>
             <div class="result-amount">
               <h4 class="dollar-sign">$</h4>
-              <h4 class="real-amount" id="a_a">0</h4>
+              <h4 class="real-amount" id="a_a">0.00</h4>
             </div>
           </div>
           <div id="result_a_results">
-            <div class="result-card" id="result_s">
-              <h2 class="perse" id="result_s_p">%20.0</h2>
+            <div
+              class="result-card"
+              id="result_s"
+              title="Fondo de emergencia para cuando te quedes sin empleo o tengas una mala racha de ingresos."
+            >
+              <h2 class="perse" id="result_s_p">%25.0</h2>
               <h2>Seguridad</h2>
               <div class="result-amount">
                 <h4 class="dollar-sign">$</h4>
-                <h4 class="real-amount" id="a_s">0</h4>
+                <h4 class="real-amount" id="a_s">0.00</h4>
               </div>
             </div>
-            <div class="result-card" id="result_c">
+            <div
+              class="result-card"
+              id="result_c"
+              title="Dinero para poner en una cuenta de alto rendimiento y que será el dinero para tu retiro."
+            >
               <h2 class="perse" id="result_c_p">%30.0</h2>
               <h2>Crecimiento</h2>
               <div class="result-amount">
                 <h4 class="dollar-sign">$</h4>
-                <h4 class="real-amount" id="a_c">0</h4>
+                <h4 class="real-amount" id="a_c">0.00</h4>
               </div>
             </div>
-            <div class="result-card" id="result_o">
-              <h2 class="perse" id="result_o_p">%50.0</h2>
+            <div
+              class="result-card"
+              id="result_o"
+              title="Con este ahorro podrás comprarte lo que quieras a largo plazo, ahorras para uno o varios objetivos."
+            >
+              <h2 class="perse" id="result_o_p">%45.0</h2>
               <h2>Objetivos</h2>
               <div class="result-amount">
                 <h4 class="dollar-sign">$</h4>
-                <h4 class="real-amount" id="a_o">0</h4>
+                <h4 class="real-amount" id="a_o">0.00</h4>
               </div>
             </div>
           </div>

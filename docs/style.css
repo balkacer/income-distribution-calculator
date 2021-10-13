@@ -1,11 +1,14 @@
 :root {
   --c-bg: #040f0f;
   --c-bg-alt: #002e2c;
+  --c-bg-alt-2: #8eaf9d;
   --c-txt: #004125;
   --c-pry: #2ba84a;
   --c-white: #fcfffc;
   --c-c-1: #d3f3ee;
   --c-c-0: #2ba84a;
+  --c-c-2: #dc605c;
+  --c-c-3: #4b0503;
 }
 
 * {
@@ -33,16 +36,15 @@ p {
 .perse {
   position: absolute;
   top: 0.5rem;
-  left: -3rem;
-  font-size: 1rem;
-  color: var(--c-bg);
-  transform: rotateZ(-40deg);
-  opacity: 0.5;
-  background-color: var(--c-c-1);
-  font-weight: bold;
-  padding: 0.5rem;
-  width: 150px;
+  left: 0.5rem;
+  font-size: .9rem;
+  color: var(--c-c-1);
+  background-color: var(--c-txt);
+  font-weight: 500;
+  padding: 0.18rem 0.4rem 0.25rem 0.4rem;
+  width: auto;
   text-align: center;
+  border-radius: 0.5rem;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -60,11 +62,13 @@ input[type="number"] {
 body {
   background-color: var(--c-bg);
   display: grid;
-  grid-template-rows: 15% 85%;
+  grid-template-rows: 12% 87%;
   grid-template-columns: 100%;
   overflow: hidden;
   max-height: 100vh;
   min-height: 100vh;
+  min-width: 100vw;
+  min-width: 100vw;
 }
 
 header {
@@ -87,22 +91,42 @@ header > p {
 }
 
 #calc {
-  padding: 0rem 15rem 4rem 15rem;
+  padding: 0rem 5rem 5rem 5rem;
   display: grid;
-  grid-template-rows: 20% 80%;
+  grid-template-rows: 15% 85%;
   grid-template-columns: 100%;
   height: 100%;
+  width: 100vw;
 }
 
 #calc-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 4rem;
+  height: 100%;
+  width: 100%;
 }
 
 #total {
+  width: 50%;
+  display: grid;
+  grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
+  grid-gap: 1rem;
+}
+
+.bordered_box {
   display: flex;
+  align-items: center;
+  justify-content: baseline;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: .8rem;
+  border: 0.1rem solid var(--c-c-1);
+}
+
+.bordered_box > h2 {
+  font-size: 1rem;
 }
 
 .result-amount {
@@ -113,6 +137,7 @@ header > p {
   position: relative;
   padding: 1rem 3rem;
   width: 100%;
+  height: 100%;
   border-radius: 1rem;
   display: flex;
   justify-content: space-between;
@@ -143,22 +168,52 @@ input {
   color: var(--c-c-1);
   margin: 0;
   font-size: 1rem;
+  width: 20rem;
 }
 
 input::placeholder {
-  color: var(--c-c-1);
+  color: var(--c-bg-alt-2);
 }
 
 .results {
   width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto;
+  grid-template-columns:
+    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem)
+    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem)
+    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem)
+    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem);
+  grid-template-rows:
+    calc(100% / 4 - 0.5rem) calc(100% / 4 - 0.5rem) calc(100% / 4 - 0.5rem)
+    calc(100% / 4 - 0.5rem);
   grid-gap: 1rem;
   grid-template-areas:
-    "result_n result_a"
-    "result_g result_a"
-    "result_i result_a";
+    "result_ars result_ars result_ars result_ars result_afp result_afp result_afp result_afp result_isr result_isr result_isr result_isr"
+    "result_n result_n result_n result_n result_n result_n result_a result_a result_a result_a result_a result_a"
+    "result_g result_g result_g result_d result_d result_d result_a result_a result_a result_a result_a result_a"
+    "result_i result_i result_i result_i result_i result_i result_a result_a result_a result_a result_a result_a";
+}
+
+#result_isr {
+  grid-area: result_isr;
+  background-color: var(--c-c-2);
+}
+
+#result_afp {
+  grid-area: result_afp;
+  background-color: var(--c-c-2);
+}
+
+#result_ars {
+  grid-area: result_ars;
+  background-color: var(--c-c-2);
+}
+
+#result_isr h4,
+#result_afp h4,
+#result_ars h4 {
+  color: var(--c-c-3);
 }
 
 #result_n {
@@ -166,9 +221,22 @@ input::placeholder {
   background-color: var(--c-c-0);
 }
 
+#result_d {
+  grid-area: result_d;
+  background-color: var(--c-c-0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #result_g {
   grid-area: result_g;
   background-color: var(--c-c-0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #result_i {
@@ -209,8 +277,17 @@ input::placeholder {
 
 #result_a_results .result-card {
   background-color: rgba(0, 0, 0, 0.1);
+  padding-left: 5rem;
 }
 
 #result_a_results .result-card h4 {
   color: var(--c-c-1);
+}
+
+#result_a_results .result-card .perse {
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
 }
