@@ -8,10 +8,12 @@ input.addEventListener("keyup", function (event) {
   }
 });
 
-// Amounts
+// Taxes
 const isrResult = document.getElementById("a_isr");
 const afpResult = document.getElementById("a_afp");
 const arsResult = document.getElementById("a_ars");
+
+// Amounts
 const nResult = document.getElementById("a_n");
 const dResult = document.getElementById("a_d");
 const gResult = document.getElementById("a_g");
