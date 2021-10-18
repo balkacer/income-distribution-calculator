@@ -1,5 +1,13 @@
 const input = document.getElementById("a_input");
 
+// To use key Enter to calculate
+input.addEventListener("keyup", function (event) {
+  if (event.code === 'Enter') {
+    event.preventDefault();
+    calculate();
+  }
+});
+
 // Amounts
 const isrResult = document.getElementById("a_isr");
 const afpResult = document.getElementById("a_afp");
@@ -27,20 +35,24 @@ const resN = document.getElementById("res_n");
 const format = (money, decimals = 2) =>
   money.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+// Get percent from an input
 const getPercent = (input, value) => "%" + format((value / input) * 100, 1);
 
+// ARS
 function calculateARS(value) {
   if (value <= 13482) return 0;
   const ARS = value * 0.0304;
   return ARS < 4098.53 ? ARS : 4098.53;
 }
 
+// AFP
 function calculateAFP(value) {
   if (value <= 13482) return 0;
   const AFP = value * 0.0287;
   return AFP < 7738.67 ? AFP : 7738.67;
 }
 
+// ISR
 function calculateISR(grossSalary, ars, afp) {
   const netSalary = grossSalary - (ars + afp);
 
@@ -57,6 +69,7 @@ function calculateISR(grossSalary, ars, afp) {
   return optionA ? results[0] : optionB ? results[1] : optionC ? results[2] : 0;
 }
 
+// Calculate percent to get from input
 function calculatePercent(input = 0, ...percents) {
   const sizeA = input >= 5000 && input < 10000;
   const sizeB = input >= 10000 && input < 25000;
@@ -92,6 +105,7 @@ function calculatePercent(input = 0, ...percents) {
   );
 }
 
+// Calculate results
 function calculate() {
   const inputValue = +input.value;
 
@@ -130,10 +144,3 @@ function calculate() {
   iPercent.innerHTML = getPercent(withTaxes, investments);
   aPercent.innerHTML = getPercent(withTaxes, savings);
 }
-
-input.addEventListener("keyup", function (event) {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    calculate();
-  }
-});
