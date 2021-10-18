@@ -65,7 +65,8 @@ function calculatePercent(input = 0, ...percents) {
   const sizeE = input >= 100000 && input < 150000;
   const sizeF = input >= 150000 && input < 250000;
   const sizeG = input >= 250000 && input < 500000;
-  const sizeH = input >= 500000;
+  const sizeH = input >= 500000 && input < 1000000;
+  const sizeI = input >= 1000000;
 
   return (
     input *
@@ -85,6 +86,8 @@ function calculatePercent(input = 0, ...percents) {
       ? percents[6]
       : sizeH
       ? percents[7]
+      : sizeI
+      ? percents[8]
       : 0)
   );
 }
@@ -105,11 +108,11 @@ function calculate() {
   afpResult.innerHTML = format(afp);
   arsResult.innerHTML = format(ars);
 
-  const needs = calculatePercent(withTaxes, 0.4, 0.45, 0.45);
-  const pleasures = calculatePercent(withTaxes, 0.2, 0.18, 0.158);
-  const donations = calculatePercent(withTaxes, 0.05, 0.02, 0.03);
-  const investments = calculatePercent(withTaxes, 0.13, 0.15, 0.142);
-  const savings = calculatePercent(withTaxes, 0.22, 0.22, 0.24);
+  const needs       = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.450, 0.200, 0.200, 0.200, 0.200, 0.200);
+  const pleasures   = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200);
+  const donations   = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.020, 0.200, 0.200, 0.200, 0.200, 0.200);
+  const investments = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200);
+  const savings     = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200);
 
   nResult.innerHTML = format(needs);
   dResult.innerHTML = format(donations);
