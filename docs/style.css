@@ -56,11 +56,13 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type="number"] {
+  -webkit-appearance: textfield;
   -moz-appearance: textfield;
 }
 
 body {
   background-color: var(--c-bg);
+  display: -ms-grid;
   display: grid;
   grid-template-rows: 12% 87%;
   grid-template-columns: 100%;
@@ -92,6 +94,7 @@ header > p {
 
 #calc {
   padding: 0rem 5rem 5rem 5rem;
+  display: -ms-grid;
   display: grid;
   grid-template-rows: 15% 85%;
   grid-template-columns: 100%;
@@ -109,6 +112,7 @@ header > p {
 
 #total {
   width: 50%;
+  display: -ms-grid;
   display: grid;
   grid-template-columns: calc(50% - 0.5rem) calc(50% - 0.5rem);
   grid-gap: 1rem;
@@ -178,15 +182,10 @@ input::placeholder {
 .results {
   width: 100%;
   height: 100%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns:
-    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem)
-    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem)
-    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem)
-    calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem) calc(100% / 12 - 0.915rem);
-  grid-template-rows:
-    calc(100% / 4 - 0.5rem) calc(100% / 4 - 0.5rem) calc(100% / 4 - 0.5rem)
-    calc(100% / 4 - 0.5rem);
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   grid-gap: 1rem;
   grid-template-areas:
     "result_ars result_ars result_ars result_ars result_afp result_afp result_afp result_afp result_isr result_isr result_isr result_isr"
@@ -250,9 +249,10 @@ input::placeholder {
   flex-direction: column;
   width: 100%;
   height: 100%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 20% 80%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 4fr;
   padding: 1rem;
 }
 
@@ -290,4 +290,16 @@ input::placeholder {
   justify-content: center;
   align-items: center;
   width: 65px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+input[type="radio"] {
+  width: auto;
 }

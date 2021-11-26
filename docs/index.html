@@ -22,18 +22,24 @@
           />
           <button onclick="calculate()">Calcular</button>
         </div>
-        <div id="total">
-          <div class="bordered_box">
-            <h2>Bruto: &nbsp;</h2>
-            <h2 class="dollar-sign">$</h2>
-            <h2 id="res_b">0.00</h2>
+        <form id="total">
+          <div class="bordered_box flex">
+            <label class="flex" for="r_br">
+              <h2>Bruto: &nbsp;</h2>
+              <h2 class="dollar-sign">$</h2>
+              <h2 id="res_b">0.00</h2>
+            </label>
+            <input type="radio" name="radio" id="r_br" checked="false" onclick="calculate()"/>
           </div>
-          <div class="bordered_box">
-            <h2>Neto: &nbsp;</h2>
-            <h2 class="dollar-sign">$</h2>
-            <h2 id="res_n">0.00</h2>
+          <div class="bordered_box flex">
+            <label class="flex" for="r_nt">
+              <h2>Neto: &nbsp;</h2>
+              <h2 class="dollar-sign">$</h2>
+              <h2 id="res_n">0.00</h2>
+            </label>
+            <input type="radio" name="radio" id="r_nt" checked="true" onclick="calculate()"/>
           </div>
-        </div>
+        </form>
       </div>
       <div class="results">
         <div
@@ -136,7 +142,7 @@
               id="result_s"
               title="Fondo de emergencia para cuando te quedes sin empleo o tengas una mala racha de ingresos."
             >
-              <h2 class="perse" id="result_s_p">%25.0</h2>
+              <h2 class="perse" id="result_s_p">%23.0</h2>
               <h2>Seguridad</h2>
               <div class="result-amount">
                 <h4 class="dollar-sign">$</h4>
@@ -148,7 +154,7 @@
               id="result_c"
               title="Dinero para poner en una cuenta de alto rendimiento y que será el dinero para tu retiro."
             >
-              <h2 class="perse" id="result_c_p">%30.0</h2>
+              <h2 class="perse" id="result_c_p">%31.0</h2>
               <h2>Crecimiento</h2>
               <div class="result-amount">
                 <h4 class="dollar-sign">$</h4>
@@ -160,7 +166,7 @@
               id="result_o"
               title="Con este ahorro podrás comprarte lo que quieras a largo plazo, ahorras para uno o varios objetivos."
             >
-              <h2 class="perse" id="result_o_p">%45.0</h2>
+              <h2 class="perse" id="result_o_p">%46.0</h2>
               <h2>Objetivos</h2>
               <div class="result-amount">
                 <h4 class="dollar-sign">$</h4>

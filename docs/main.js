@@ -108,11 +108,13 @@ function calculate() {
   afpResult.innerHTML = format(afp);
   arsResult.innerHTML = format(ars);
 
-  const needs       = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.450, 0.200, 0.200, 0.200, 0.200, 0.200);
-  const pleasures   = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200);
-  const donations   = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.020, 0.200, 0.200, 0.200, 0.200, 0.200);
-  const investments = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200);
-  const savings     = calculatePercent(withTaxes, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200, 0.200);
+  const value = document.getElementById("r_nt").checked ? withTaxes : inputValue;
+
+  const needs       = calculatePercent(value, 0.420, 0.417, 0.417, 0.417, 0.417, 0.417, 0.417, 0.417, 0.417, 0.417);
+  const pleasures   = calculatePercent(value, 0.180, 0.128, 0.128, 0.127, 0.127, 0.128, 0.128, 0.128, 0.128, 0.128);
+  const donations   = calculatePercent(value, 0.080, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055, 0.055);
+  const investments = calculatePercent(value, 0.100, 0.126, 0.126, 0.126, 0.126, 0.126, 0.126, 0.126, 0.126, 0.126);
+  const savings     = calculatePercent(value, 0.220, 0.274, 0.274, 0.275, 0.275, 0.274, 0.274, 0.274, 0.274, 0.274);
 
   nResult.innerHTML = format(needs);
   dResult.innerHTML = format(donations);
@@ -120,13 +122,13 @@ function calculate() {
   iResult.innerHTML = format(investments);
   aResult.innerHTML = format(savings);
 
-  sResult.innerHTML = format(savings * 0.25);
-  cResult.innerHTML = format(savings * 0.3);
-  oResult.innerHTML = format(savings * 0.45);
+  sResult.innerHTML = format(savings * 0.23);
+  cResult.innerHTML = format(savings * 0.31);
+  oResult.innerHTML = format(savings * 0.46);
 
-  nPercent.innerHTML = getPercent(withTaxes, needs);
-  dPercent.innerHTML = getPercent(withTaxes, donations);
-  gPercent.innerHTML = getPercent(withTaxes, pleasures);
-  iPercent.innerHTML = getPercent(withTaxes, investments);
-  aPercent.innerHTML = getPercent(withTaxes, savings);
+  nPercent.innerHTML = getPercent(value, needs);
+  dPercent.innerHTML = getPercent(value, donations);
+  gPercent.innerHTML = getPercent(value, pleasures);
+  iPercent.innerHTML = getPercent(value, investments);
+  aPercent.innerHTML = getPercent(value, savings);
 }
