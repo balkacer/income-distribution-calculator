@@ -72,39 +72,23 @@ function calculateISR(grossSalary, ars, afp) {
 }
 
 // Calculate percent to get from input
-function calculatePercent(input = 0, ...percents) {
-  const sizeA = input >= 5000 && input < 10000;
-  const sizeB = input >= 10000 && input < 25000;
-  const sizeC = input >= 25000 && input < 50000;
-  const sizeD = input >= 50000 && input < 100000;
-  const sizeE = input >= 100000 && input < 150000;
-  const sizeF = input >= 150000 && input < 250000;
-  const sizeG = input >= 250000 && input < 500000;
-  const sizeH = input >= 500000 && input < 1000000;
-  const sizeI = input >= 1000000;
+function calculatePercent(input, ...percents) {
+  let left = 5000;
+  let result = 0;
 
-  return (
-    input *
-    (sizeA
-      ? percents[0]
-      : sizeB
-      ? percents[1]
-      : sizeC
-      ? percents[2]
-      : sizeD
-      ? percents[3]
-      : sizeE
-      ? percents[4]
-      : sizeF
-      ? percents[5]
-      : sizeG
-      ? percents[6]
-      : sizeH
-      ? percents[7]
-      : sizeI
-      ? percents[8]
-      : 0)
-  );
+  for (let i = 0; i < percents.length; i++) {
+    const dp = +((i / 4).toString().split(".")[1]); // Get decimal part
+    const right = left * (dp === 5 ? 1.5 : dp === 75 ? 1.666 + 1 : 2);
+
+    if (input >= left && input < right) {
+      result = input * percents[i];
+      break;
+    }
+
+    left = right;
+  }
+
+  return result;
 }
 
 // Calculate results
